@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sequential Progress Bars</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    .progress-bar {
+      height: 30px;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container my-5">
+    <h2 class="text-center">Sequential Animated Progress Bars</h2>
+    <div class="text-center">
+      <button id="uploadBtn" class="btn btn-primary">Upload File</button>
+    </div>
+    <div id="progressBars" class="mt-4" style="display: none;">
+      <div class="progress">
+        <div id="progressBar1" class="progress-bar progress-bar-striped progress-bar-animated bg-info" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+      </div>
+      <div class="progress">
+        <div id="progressBar2" class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+      </div>
+      <div class="progress">
+        <div id="progressBar3" class="progress-bar progress-bar-striped progress-bar-animated bg-warning" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+      </div>
+      <div class="progress">
+        <div id="progressBar4" class="progress-bar progress-bar-striped progress-bar-animated bg-danger" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+      </div>
+    </div>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <script>
+    $(document).ready(function () {
+      $('#uploadBtn').click(function () {
+        $('#progressBars').fadeIn(); // Show progress bars
+        animateProgressBar($('#progressBar1'), function () {
+          animateProgressBar($('#progressBar2'), function () {
+            animateProgressBar($('#progressBar3'), function () {
+              animateProgressBar($('#progressBar4'));
+            });
+          });
+        });
+      });
+
+      function animateProgressBar(bar, callback) {
+        let width = 0;
+        let interval = setInterval(function () {
+          if (width >= 100) {
+            clearInterval(interval);
+            if (callback) callback(); // Start next animation when complete
+          } else {
+            width++;
+            bar.css('width', width + '%').attr('aria-valuenow', width);
+          }
+        }, 100);  
+      }
+    });
+  </script>
+</body>
+</html>

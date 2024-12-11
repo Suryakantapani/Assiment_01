@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>School Management System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 300px;
+            margin: 100px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        p {
+            text-align: center;
+            color: #666;
+        }
+        label {
+            display: block;
+            margin: 10px 0 5px;
+            color: #333;
+        }
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0 15px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+        input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            background-color: #5cb85c;
+            border: none;
+            border-radius: 3px;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #4cae4c;
+        }
+        .error {
+            color: red;
+            font-size: 12px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>School Management </h1>
+    <p>Welcome to the school management System </p>
+    
+    <form id="loginForm" onsubmit="return validatePassword()">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+        <div id="error" class="error"></div>
+
+        <input type="submit" value="Login">
+    </form>
+</div>
+
+<script>
+    function validatePassword() {
+        const pa = document.getElementById('password').value;
+        const error = document.getElementById('error');
+        const pp = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/;
+
+        if (!passwordPattern.test(pa)) {
+            errorDiv.textContent = "Password must contain at least 1 uppercase letter, 1 lowercase letter, and 1 digit.";
+            return false;  
+        }
+
+        errorDiv.textContent = "";  
+        return true;  
+    }
+</script>
+
+</body>
+</html>  
